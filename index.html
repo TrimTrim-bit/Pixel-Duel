@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pixel Duel Arcade</title>
+<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="features.css?v=8">
+<link rel="stylesheet" href="ui_boost.css?v=2">
+</head>
+<body>
+
+<section id="menu" class="screen active">
+<h1>PIXEL DUEL</h1>
+<p>LOCAL TWO-PLAYER ARCADE</p>
+<div id="sessionRow" style="display:flex;align-items:center;justify-content:center;gap:14px;margin:10px 0 18px">
+<p id="scoreboard" style="margin:0;color:var(--muted);font-size:15px">SESSION WINS — P1: <b id="w1">0</b> &nbsp;|&nbsp; P2: <b id="w2">0</b></p>
+<span id="hudDigitalClock" style="font-size:15px"></span>
+</div>
+<span id="shopBadge" style="display:none;margin:0 0 10px;padding:2px 10px;border:1px solid var(--accent3);color:var(--accent3);font-size:12px;letter-spacing:1px;border-radius:10px;background:rgba(255,230,109,.08)"></span>
+
+<div id="dockBar">
+  <button class="dock-btn" onclick="toggleDock()" title="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span>MENU</span>
+  </button>
+</div>
+<div id="dockSidebar">
+  <div style="text-align:center;color:var(--accent);font-family:'Courier New',monospace;font-size:16px;font-weight:bold;padding:0 20px 16px;border-bottom:1px solid #2a3260;margin-bottom:10px;">PIXEL DUEL</div>
+  <button class="sidebar-btn" onclick="toggleShop()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 3h12l2 6H4l2-6z" stroke="currentColor" stroke-width="2"/><path d="M4 9h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9z" stroke="currentColor" stroke-width="2"/><path d="M9 13v3M15 13v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span>PIXEL SHOP</span>
+  </button>
+  <button class="sidebar-btn" onclick="toggleSettings()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span>SETTINGS</span>
+  </button>
+  <button class="sidebar-btn" onclick="openCinema()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M10 9l5 3-5 3V9z" fill="currentColor"/></svg>
+    <span>CINEMA</span>
+  </button>
+  <button class="sidebar-btn" onclick="toggleMute()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span>SOUND</span>
+  </button>
+  <button class="sidebar-btn" onclick="openCalendar()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span>CALENDAR</span>
+  </button>
+  <button class="sidebar-btn" onclick="openHouse()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1V11z" stroke="currentColor" stroke-width="2"/></svg>
+    <span>MY HOUSE</span>
+  </button>
+  <button class="sidebar-btn" onclick="openSolo()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M6 10h4M8 8v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span>SOLO ARCADE</span>
+  </button>
+  <button class="sidebar-btn" onclick="openCoop()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="8" r="3" stroke="currentColor" stroke-width="2"/><path d="M2 20c0-3 2.5-5 6-5s6 2 6 5M12 20c0-3 2.5-5 6-5s6 2 6 5" stroke="currentColor" stroke-width="2"/></svg>
+    <span>CO-OP LEVELS</span>
+  </button>
+</div>
+<div id="dockOverlay" style="position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:8999;display:none;" onclick="toggleDock()"></div>
+
+<div class="menu-buttons">
+<button class="game-card party-card" onclick="startParty()">
+<strong>PARTY MODE</strong>
+<small>Random games — first to 3 wins</small>
+</button>
+
+<button class="game-card" onclick="openGame('pong')">
+<strong>NEON PONG</strong>
+<small>Precision paddle battle</small>
+</button>
+
+<button class="game-card" onclick="openGame('ttt')">
+<strong>GRID DUEL</strong>
+<small>Pixel tic-tac-toe</small>
+</button>
+
+<button class="game-card" onclick="openGame('connectGame')">
+<strong>FOUR IN A ROW</strong>
+<small>Drop pieces and connect</small>
+</button>
+
+<button class="game-card" onclick="openGame('duelGame')">
+<strong>WESTERN DUEL</strong>
+<small>Wait, react, shoot</small>
+</button>
+
+<button class="game-card" onclick="openGame('tugGame')">
+<strong>TUG OF WAR</strong>
+<small>Spam your key to pull</small>
+</button>
+
+<button class="game-card" onclick="openGame('breadGame')">
+<strong>BREAD WARS</strong>
+<small>Pigeon versus pigeon</small>
+</button>
+
+<button class="game-card" onclick="openGame('hockeyGame')">
+<strong>AIR HOCKEY</strong>
+<small>Slam the puck past them</small>
+</button>
+
+<button class="game-card" onclick="openGame('bombGame')">
+<strong>BOMB DUEL</strong>
+<small>Lob explosives at each other</small>
+</button>
+
+<button class="game-card" onclick="openGame('dodgeGame')">
+<strong>DODGEBALL</strong>
+<small>Throw, duck, eliminate</small>
+</button>
+
+<button class="game-card" onclick="openGame('sumoGame')">
+<strong>SUMO RUSH</strong>
+<small>Push them out of the ring</small>
+</button>
+
+<button class="game-card" onclick="openGame('snakeGame')">
+<strong>SNAKE TRON</strong>
+<small>Don't cross the lines</small>
+</button>
+
+<button class="game-card" onclick="openGame('basketGame')">
+<strong>BASKETBALL HOOPS</strong>
+<small>Dunk it in their hoop</small>
+</button>
+
+<button class="game-card" onclick="openGame('volleyGame')">
+<strong>VOLLEYBALL</strong>
+<small>Volley over the net</small>
+</button>
+
+<button class="game-card" onclick="openGame('memGame')">
+<strong>MEMORY MATCH</strong>
+<small>Click matching pairs</small>
+</button>
+
+<button class="game-card" onclick="openCinema()">
+<strong>CINEMA</strong>
+<small>Watch educational videos</small>
+</button>
+
+<button class="game-card" onclick="openGame('reactGame')">
+<strong>REACTION DUEL</strong>
+<small>Fastest to press wins</small>
+</button>
+
+<button class="game-card" onclick="openGame('raceGame')">
+<strong>PIXEL RACERS</strong>
+<small>Dash to the finish line</small>
+</button>
+
+<button class="game-card" onclick="openGame('platformGame')">
+<strong>PLATFORM CLASH</strong>
+<small>Jump, dodge, survive</small>
+</button>
+
+<button class="game-card" onclick="openGame('tankGame')">
+<strong>TANK ARENA</strong>
+<small>Bounce shots, one hit kills</small>
+</button>
+
+<button class="game-card" onclick="openGame('spaceGame')">
+<strong>SPACE DUEL</strong>
+<small>Dodge the sun, shoot the rival</small>
+</button>
+
+<button class="game-card" onclick="openGame('potatoGame')">
+<strong>HOT POTATO</strong>
+<small>Pass the bomb before it blows</small>
+</button>
+</div>
+</section>
+
+<section id="pong" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>NEON PONG</h2>
+<p>PLAYER 1: W / S　 PLAYER 2: ARROW KEYS</p>
+<canvas id="pongCanvas" width="900" height="500"></canvas>
+<div id="pongStatus" class="status"></div>
+<button onclick="resetPong()">RESTART</button>
+</section>
+
+<section id="ttt" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>GRID DUEL</h2>
+<div id="tttMsg" class="status">PLAYER X'S TURN</div>
+<div id="board" class="board"></div>
+<button onclick="resetTTT()">RESTART</button>
+</section>
+
+<section id="connectGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>FOUR IN A ROW</h2>
+<p>PLAYER RED: 1-7 KEYS　 PLAYER YELLOW: CLICK</p>
+<div id="connect"></div>
+<div id="connectMsg" class="status">RED'S TURN</div>
+<button onclick="resetConnect()">RESTART</button>
+</section>
+
+<section id="duelGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>WESTERN DUEL</h2>
+<p>PLAYER 1: A　 PLAYER 2: L</p>
+<div class="duel-arena" id="duelArena">
+<canvas id="duelCanvas" width="900" height="360"></canvas>
+<div id="duelCue" class="duel-cue">DRAW!</div>
+</div>
+<div id="duelMsg" class="status">PRESS START</div>
+<button onclick="startDuel()">START DUEL</button>
+</section>
+
+<section id="tugGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>TUG OF WAR</h2>
+<p>PLAYER 1: A　 PLAYER 2: L</p>
+<canvas id="tugCanvas" width="900" height="400"></canvas>
+<div id="tugMsg" class="status">PRESS START</div>
+<button onclick="startTug()">START MATCH</button>
+</section>
+
+<section id="breadGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>BREAD WARS</h2>
+<p>PLAYER 1: A / D　 PLAYER 2: LEFT / RIGHT</p>
+<canvas id="breadCanvas" width="900" height="500"></canvas>
+<div id="breadMsg" class="status">STEAL THE BREAD</div>
+<button onclick="resetBread()">RESTART</button>
+</section>
+
+<section id="hockeyGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>AIR HOCKEY</h2>
+<p>PLAYER 1: W / A / S / D　 PLAYER 2: ARROW KEYS</p>
+<canvas id="hockeyCanvas" width="900" height="500"></canvas>
+<div id="hockeyMsg" class="status">FIRST TO 5 WINS</div>
+<button onclick="resetHockey()">RESTART</button>
+</section>
+
+<section id="bombGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>BOMB DUEL</h2>
+<p>P1: A/D / W jump / SPACE throw　 P2: ARROWS / UP jump / ENTER throw</p>
+<canvas id="bombCanvas" width="900" height="500"></canvas>
+<div id="bombMsg" class="status">FIRST TO 3 HITS WINS</div>
+<button onclick="resetBomb()">RESTART</button>
+</section>
+
+<section id="dodgeGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>DODGEBALL</h2>
+<p>P1: A/D / W jump / SPACE throw　 P2: Arrows / UP jump / ENTER throw</p>
+<canvas id="dodgeCanvas" width="900" height="500"></canvas>
+<div id="dodgeMsg" class="status">HIT THEM 3 TIMES TO WIN</div>
+<button onclick="resetDodge()">RESTART</button>
+</section>
+
+<section id="sumoGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>SUMO RUSH</h2>
+<p>P1: A / D　 P2: LEFT / RIGHT</p>
+<canvas id="sumoCanvas" width="900" height="500"></canvas>
+<div id="sumoMsg" class="status">PUSH THEM OUT OF THE RING</div>
+<button onclick="resetSumo()">RESTART</button>
+</section>
+
+<section id="snakeGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>SNAKE TRON</h2>
+<p>P1: A / D / W / S　 P2: ARROW KEYS</p>
+<canvas id="snakeCanvas" width="900" height="500"></canvas>
+<div id="snakeMsg" class="status">DON'T CROSS THE LINES</div>
+<button onclick="resetSnake()">RESTART</button>
+</section>
+
+<section id="basketGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>BASKETBALL HOOPS</h2>
+<p>P1: A/D / W jump / SPACE throw　 P2: Arrows / UP jump / ENTER throw</p>
+<canvas id="basketCanvas" width="900" height="500"></canvas>
+<div id="basketMsg" class="status">DUNK IT IN THEIR HOOP — FIRST TO 5</div>
+<button onclick="resetBasket()">RESTART</button>
+</section>
+
+<section id="volleyGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>VOLLEYBALL</h2>
+<p>P1: A / D / W　 P2: LEFT / RIGHT / UP</p>
+<canvas id="volleyCanvas" width="900" height="500"></canvas>
+<div id="volleyMsg" class="status">VOLLEY OVER THE NET — FIRST TO 7</div>
+<button onclick="resetVolley()">RESTART</button>
+</section>
+
+<section id="memGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>MEMORY MATCH</h2>
+<p>CLICK MATCHING PAIRS — P1 STARTS</p>
+<canvas id="memCanvas" width="900" height="500"></canvas>
+<div id="memMsg" class="status">P1'S TURN</div>
+<button onclick="resetMem()">RESTART</button>
+</section>
+
+<section id="reactGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>REACTION DUEL</h2>
+<p>P1: A　 P2: L</p>
+<canvas id="reactCanvas" width="900" height="500"></canvas>
+<div id="reactMsg" class="status">PRESS START — REACT TO THE COLOR</div>
+<button onclick="startReact()">START</button>
+</section>
+
+<section id="raceGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>PIXEL RACERS</h2>
+<p>PLAYER 1: A / D　 PLAYER 2: LEFT / RIGHT</p>
+<canvas id="raceCanvas" width="900" height="500"></canvas>
+<div id="raceMsg" class="status">REACH THE FINISH</div>
+<button onclick="resetRace()">RESTART</button>
+</section>
+
+<section id="platformGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>PLATFORM CLASH</h2>
+<p>PLAYER 1: A / D / W　 PLAYER 2: LEFT / RIGHT / UP</p>
+<canvas id="platformCanvas" width="900" height="500"></canvas>
+<div id="platformMsg" class="status">LAST PLAYER STANDING</div>
+<button onclick="resetPlatform()">RESTART</button>
+</section>
+
+<section id="tankGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>TANK ARENA</h2>
+<p>P1: A/D turn, W/S drive, SPACE fire　 P2: ←/→ turn, ↑/↓ drive, ENTER fire</p>
+<canvas id="tankCanvas" width="900" height="500"></canvas>
+<div id="tankMsg" class="status">FIRST TO 5</div>
+<button onclick="resetTank()">RESTART</button>
+</section>
+
+<section id="spaceGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>SPACE DUEL</h2>
+<p>P1: A/D turn, W thrust, SPACE fire　 P2: ←/→ turn, ↑ thrust, ENTER fire</p>
+<canvas id="spaceCanvas" width="900" height="500"></canvas>
+<div id="spaceMsg" class="status">FIRST TO 5</div>
+<button onclick="resetSpace()">RESTART</button>
+</section>
+
+<section id="potatoGame" class="screen">
+<button class="back" onclick="showMenu()">MENU</button>
+<h2>HOT POTATO</h2>
+<p>P1: W/A/S/D + SPACE dash　 P2: ARROWS + ENTER dash　 (touch the other player to pass the bomb)</p>
+<canvas id="potatoCanvas" width="900" height="500"></canvas>
+<div id="potatoMsg" class="status">FIRST TO 3</div>
+<button onclick="resetPotato()">RESTART</button>
+</section>
+
+<div class="touch-pad" id="duelTouch">
+<button class="touch-btn" id="touchDuelP1">PLAYER 1: DRAW</button>
+<button class="touch-btn" id="touchDuelP2">PLAYER 2: DRAW</button>
+</div>
+
+<div class="touch-pad" id="tugTouch">
+<button class="touch-btn" id="touchTugP1">PLAYER 1: PULL</button>
+<button class="touch-btn" id="touchTugP2">PLAYER 2: PULL</button>
+</div>
+
+<div id="settingsPanel" class="settings-panel">
+<div class="settings-box">
+<h3>SETTINGS</h3>
+<div class="settings-row"><label>SOUND</label><div class="toggle"><input type="checkbox" id="sndToggle"><div class="slider"></div></div></div>
+<div class="settings-row"><label>SCANLINES</label><div class="toggle"><input type="checkbox" id="scanToggle"><div class="slider"></div></div></div>
+<div class="settings-row"><label>AI OPPONENT</label><div class="vol-wrap">
+<button onclick="setAIMode('off')" class="chip" id="aiOffBtn">2P</button>
+<button onclick="setAIMode('p2_ai')" class="chip" id="aiP2Btn">P2=AI</button>
+<button onclick="setAIMode('both_ai')" class="chip" id="aiBothBtn">AIvAI</button>
+</div></div>
+<div class="settings-row"><label>VOLUME</label><div class="vol-wrap"><input type="range" id="volRange" min="0" max="1" step="0.1" value="1"><span id="volVal">100%</span></div></div>
+<button class="close-settings" onclick="toggleSettings()">CLOSE</button>
+</div>
+</div>
+
+<div id="shopPanel" class="settings-panel">
+<div class="settings-box">
+<h3 style="color:var(--accent3)">PIXEL SHOP</h3>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--panel-border);">
+<span style="color:var(--text);font-weight:bold">COINS</span>
+<span id="shopCoins" style="color:var(--accent3);font-weight:bold;font-size:18px">0</span>
+</div>
+<div id="shopGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;max-height:300px;overflow-y:auto;padding-right:6px;"></div>
+<div id="shopMsg" style="margin-top:10px;color:var(--muted);font-size:13px;text-align:center;min-height:18px"></div>
+<button class="close-settings" onclick="toggleShop()">CLOSE SHOP</button>
+</div>
+</div>
+
+<script src="script.js?v=15"></script>
+<script src="extras.js?v=2"></script>
+<script src="engine.js?v=8"></script>
+<script src="state_bridge.js?v=4"></script>
+<script src="games_a.js?v=5"></script>
+<script src="games_b.js?v=5"></script>
+<script src="games_c.js?v=5"></script>
+<script src="games_d.js?v=5"></script>
+<script src="games_e.js?v=5"></script>
+<script src="games_f.js?v=5"></script>
+<script src="games_g.js?v=5"></script>
+<script src="games_h.js?v=7"></script>
+<script src="games_k.js?v=6"></script>
+<script src="games_m.js?v=6"></script>
+<script src="games_n.js?v=6"></script>
+<script src="games_o.js?v=13"></script>
+<script src="games_p.js?v=17"></script>
+<script src="games_q.js?v=13"></script>
+<script src="games_r.js?v=13"></script>
+<script src="games_s.js?v=13"></script>
+<script src="games_t.js?v=17"></script>
+<script src="games_u.js?v=17"></script>
+<script src="games_v.js?v=17"></script>
+<script src="games_w.js?v=16"></script>
+<script src="games_x.js?v=1"></script>
+<script src="games_y.js?v=1"></script>
+<script src="games_z.js?v=1"></script>
+<script src="games_aa.js?v=1"></script>
+<script src="games_ab.js?v=1"></script>
+<script src="games_ac.js?v=1"></script>
+<script src="games_ad.js?v=1"></script>
+<script src="games_ae.js?v=1"></script>
+<script src="games_af.js?v=2"></script>
+<script src="games_ag.js?v=1"></script>
+<script src="games_ah.js?v=1"></script>
+<script src="games_final.js?v=1"></script>
+<script src="features.js?v=6"></script>
+<script src="favicons.js?v=2"></script>
+<script src="grade_catalog.js?v=2"></script>
+<script src="identity.js?v=2"></script>
+<script src="look_feel.js?v=3"></script>
+<script src="mega_shop.js?v=7"></script>
+<script src="game_exclude.js?v=3"></script>
+<script src="games_fixes.js?v=2"></script>
+<script src="local_videos.js?v=10"></script>
+<script src="games_fixes2.js?v=2"></script>
+<script src="multiplayer.js?v=1"></script>
+<script src="games_mp.js?v=1"></script>
+<script src="games_mp2.js?v=1"></script>
+<script src="games_mp3.js?v=1"></script>
+<script src="games_mp4.js?v=1"></script>
+<script src="ai.js?v=9"></script>
+<script src="ai_extra.js?v=9"></script>
+<script src="ai_z.js?v=9"></script>
+<script src="ai_aa.js?v=9"></script>
+<script src="ai_universal2.js?v=13"></script>
+<script src="ai_fixes.js?v=9"></script>
+<script src="menu_organizer.js?v=3"></script>
+<script src="calendar.js?v=1"></script>
+<script src="meta.js?v=1"></script>
+<script src="atmosphere.js?v=2"></script>
+<script src="menu_anim.js?v=3"></script>
+<script src="seasonal_events.js?v=1"></script>
+<script src="seasonal_games.js?v=1"></script>
+<script src="seasonal_themes_v6.js?v=2"></script>
+<script src="fake_error.js?v=3"></script><script src="panic.js?v=2" defer></script>
+<script src="extras_final.js?v=9"></script>
+<script src="secret_codes.js?v=1"></script>
+<script src="glitch_ui.js?v=2"></script>
+<script src="school_expand.js?v=1"></script>
+<script src="school_subjects.js?v=1"></script>
+<script src="school_mode.js?v=4"></script>
+<script src="qol.js?v=1"></script>
+<script src="clock_pro.js?v=2"></script>
+<script src="touch.js?v=1"></script>
+<script src="ui_boost.js?v=1"></script>
+</body>
+</html>
+
+
+
+
+
+
+

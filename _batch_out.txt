@@ -1,0 +1,222 @@
+{
+ "duelGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "active,ready,timer,idleTime,winner,shotBy,shootAnim,hitAnim,shooterX,shooterY,targetX,targ"
+ },
+ "breadGame": {
+  "screen": "menu",
+  "uniq": 1,
+  "keys": "active,p1,p2,loaf,particles,throwLock,winner,__aiPatched"
+ },
+ "bombGame": {
+  "screen": "menu",
+  "uniq": 1,
+  "keys": "active,p1,p2,bomb,hp1,hp2,particles,winner,explodeCooldown,__aiPatched"
+ },
+ "sumoGame": {
+  "screen": "menu",
+  "uniq": 1,
+  "keys": "active,p1,p2,ring,particles,winner,__aiPatched"
+ },
+ "basketGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "active,p1,p2,ball,hoop1,hoop2,score1,score2,particles,winner,__aiPatched"
+ },
+ "memGame": {
+  "screen": "menu",
+  "uniq": 1,
+  "keys": "active,p1,p2,cards,particles,flipped,matched,score1,score2,winner,turn,lock,__aiPatched"
+ },
+ "raceGame": {
+  "screen": "menu",
+  "uniq": 1,
+  "keys": "active,p1,p2,winner,splitScreen,obstacles,__aiPatched"
+ },
+ "tankGame": {
+  "screen": "menu",
+  "uniq": 1,
+  "keys": "active,s1,s2,tanks,bullets,walls,parts,freeze,banner,bannerColor,winner,__aiPatched"
+ },
+ "potatoGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "active,players,holder,fuse,fuseMax,tagCd,s1,s2,parts,freeze,banner,bannerColor,winner,tick"
+ },
+ "wordchainGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "rpslsGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "warlordsGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "chainbombGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "iceclimberGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "tankbattleGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "skijumpGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "bowlbrawlGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "backgammonGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "bubblesortGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "catmouseGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "slidingballsGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "ludominiGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "whacksequenceGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "iceskatingGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "bubblebattleGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "gravhockeyGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "crokinoleGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "snowfrenzyGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "bubbleShooterRealGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "memorylaneGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "froghopGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "mazerunGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "slideduelGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "bullrushGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "sheepherdGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "pixelfightGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "ropeswing2Game": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "typeracer2Game": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "glassGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "fishingGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "fencingGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "slotGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "snakeladderGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "knucklebonesGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "ceeloGame": {
+  "screen": "menu",
+  "uniq": 6,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "nonogramGame": {
+  "screen": "menu",
+  "uniq": 0
+ },
+ "hanoiGame": {
+  "screen": "menu",
+  "uniq": 1,
+  "keys": "w,h,t,score,win,mode,timer,banner,bannerC,bannerT,parts,winner,msg,cv,walls,I,pk,hover,C1,"
+ },
+ "gravpaintGame": {
+  "screen": "menu",
+  "uniq": 0
+ }
+}
