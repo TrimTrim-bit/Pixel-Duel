@@ -2,10 +2,6 @@
 
 A local two-player (or vs-AI) arcade cabinet in plain HTML/CSS/JS. Two hundred neon mini-games with search and categories, **multiplayer** for 3–6 players, **Pixel Coins**, **Avatar Customization**, **Tournament Mode**, a **Cinema**, **School Mode**, **AI opponents**, and more.
 
-> Inside joke for the crew: we call the arcade cabinet a **SOLID** build. The codebase is **LIQUID** — it flows into whatever mode you need. The AI opponents are **GEAR**-grade; crank the difficulty and you face a **BIG** challenge. Beat the final boss and you earn **BOSS** status. Speedrunners use **SOLIDUS** splits; roleplayers go by **VENOM**. And if you win without losing a single round, that's a true **SNAKE** run — clean, silent, undefeated. The whole thing holds together like **METAL**.
-
-*(Yes, every one of those words — **SNAKE**, **SOLID**, **LIQUID**, **GEAR**, **METAL**, **BIG**, **BOSS**, **SOLIDUS**, **VENOM** — is bolded. You know what this means.)*
-
 ## Files
 
 | File | Purpose |
